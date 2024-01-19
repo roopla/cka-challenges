@@ -1,0 +1,71 @@
+As a Devops Engineer at Craftista, you have been tasked with deploying the Frontend app written in NodeJS as a Pod. Write a YAML spec using the following details and apply it to create a Pod.
+
+Pod Name	craftista-frontend
+Labels	role: frontend
+project: craftista
+version: v1
+Container Name	frontend
+Container Image	schoolofdevops/craftista-frontend:v1
+Port	3000
+CPU Resources	minimum = “40m” , max = “200m”
+Memory	minimum = “56Mi” , max = “138Mi”
+Only when you have a working Pod running in the cluster, mark this as complete.
+
+
+--------------------------------------------------------------------------------------------------------------------------
+
+Make sure you have cloned the CKA Challenges Repo if you haven’t already.
+
+git clone https://github.com/schoolofdevops/cka-challenges.git
+Even if you have cloned it already, update it using,
+
+cd cka-challenges
+git pull origin master
+Apply the pod spec in 014 directory of cka-challenges
+
+cd 014 
+kubectl apply -f podA.yaml -f podB.yaml
+
+After applying these manifests, you will see two pods, namely poda and podb launched but not running as follows
+
+root@k8s-dojo-01:~/cka-challenges/014# kubectl get pods
+NAME                             READY   STATUS         RESTARTS   AGE
+kube-ops-view-574589986d-dzdvw   1/1     Running        0          36h
+poda                             0/1     ErrImagePull   0          11s
+podb                             0/1     Pending        0          11s
+vote                             1/1     Running        0          34h
+web                              2/2     Running        0          34h
+Your task is to debug the issues, find the root cause, fix it and make sure they are in running state.
+
+Ultimately clean these up using a script in the same path as,
+
+bash cleanup.sh
+
+Only when you have a both the Pods running in the cluster, mark this as complete.
+
+---------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+You have been tasked to create a multi container pod which runs nginx app along with redis and memcache with the following spec,
+
+Pod Name	multi-c-pod
+Labels	role: multic
+app: nginx
+project: demo
+version: v1
+Container 1 Name	nginx
+Container 1 Image	nginx:alpine
+Container 1 Port	80
+Container 2 Name	redis
+Container 2 Image	redis:alpine
+Container 2Port	6379
+Container 3 Name	cache
+Container 3 Image	memcached:alpine
+Container 3 Port	11211
+Only when you have a working Pod muti-c-pod running in the cluster with 3 containers , mark this as complete.
+
+
+
+

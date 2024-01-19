@@ -12,5 +12,5 @@ spec:
       image: schoolofdevops/vote:v1
       resources:
         limits:
-          cpu: "20m"
+          cpu: "20"
           memory: "64Mi"
