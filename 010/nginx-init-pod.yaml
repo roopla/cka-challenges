@@ -8,7 +8,23 @@ spec:
     image: nginx
     ports:
     - containerPort: 80
+    volumeMounts:
+    - name: shared-data
+      mountPath: /usr/share/nginx/html
   initContainers:
-  - name: install
+  - name: install-1
     image: busybox
+    command: ["wget", "-O", "/work-dir/index.html", "http://google.com"]
+    volumeMounts:
+    - name: shared-data
+      mountPath: /work-dir
+  - name: install-2
+    image: busybox
+    command: ["touch", "/work-dir/pradeep.txt"]
+    volumeMounts:
+    - name: shared-data
+      mountPath: /work-dir
+  volumes:
+  - name: shared-data
+    emptyDir: {}
 

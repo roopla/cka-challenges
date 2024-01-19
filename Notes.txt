@@ -68,4 +68,35 @@ Only when you have a working Pod muti-c-pod running in the cluster with 3 contai
 
 
 
+------------------------------------------------------------------------------------------------------------------------
+
+Problem Statement.
+Create a Pod that has one nginx application Container and one Init Container in such way that:
+
+Init container should be fetching the webpage of google.com using the command wget -O /work-dir/index.html" http://google.com
+Same fetched page should be shared with nginx container.
+nginx container will mount that shared page at /usr/share/nginx/html
+Steps:
+From cka-challenges/010 path, edit the nginx-init-pod.yaml to support the requirement above,
+
+Deploy the pod with,
+
+cd cka-challenges/010/ 
+kubectl apply -f nginx-init-pod.yaml
+Cleanup
+cd cka-challenges/010/ kubectl delete -f nginx-init-pod.yaml
+
+Skills Needed:
+Pod Spec
+Volume
+Emptydir
+Init container
+Basic Linux
+References:
+Storage: https://kubernetes.io/docs/concepts/storage/
+InitContainer: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+Only when you have a working Pod nginx-init running in the cluster which server the page added by init container , mark this as complete
+
+
+
 
